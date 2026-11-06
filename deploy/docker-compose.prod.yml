@@ -1,0 +1,62 @@
+# Production Docker Compose Configuration with NGINX Reverse Proxy and Non-Root App Execution
+
+services:
+  nginx:
+    image: nginx:1.27-alpine
+    container_name: devpilot_nginx_gateway
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - certs_data:/etc/nginx/certs:ro
+      - certbot_challenge:/var/www/certbot:ro
+    depends_on:
+      multiagent-se:
+        condition: service_healthy
+    networks:
+      - devpilot_internal
+
+  multiagent-se:
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    image: multiagent-software-engineering:latest
+    container_name: devpilot_core_system
+    user: "10001:10001"
+    restart: unless-stopped
+    expose:
+      - "8501"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - EXECUTION_MODE=${EXECUTION_MODE:-live}
+      - DEFAULT_MODEL=gemini-3.8-flash
+      - REQUIRE_HUMAN_APPROVAL=true
+      - ENABLE_PROMPT_INJECTION_CHECK=true
+      - ENABLE_AST_SECURITY_SCAN=true
+    volumes:
+      - devpilot_sandbox:/app/sandbox_workspace
+    networks:
+      - devpilot_internal
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  certs_data:
+    driver: local
+  certbot_challenge:
+    driver: local
+  devpilot_sandbox:
+    driver: local
+
+networks:
+  devpilot_internal:
+    driver: bridge
+

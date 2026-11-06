@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+.venv/
+env/
+venv/
+ENV/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Environment Variables & Secrets
+.env
+*.env.local
+
+# IDE & Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Sandbox temporary worktrees
+sandbox_workspace/runs/
+sandbox_workspace/temp/
+*.log
+
+
+# Generated runtime data - keep local
+sandbox_workspace/chroma_db/
+sandbox_workspace/runs/
+sandbox_workspace/experiments.db
+sandbox_workspace/blackboard_state.json
+sandbox_workspace/benchmark_results.csv
+sandbox_workspace/benchmark_results.json
+sandbox_workspace/pilot_execution_report.json
+
+# Local databases and generated artifacts
+*.db
+*.sqlite
+*.sqlite3

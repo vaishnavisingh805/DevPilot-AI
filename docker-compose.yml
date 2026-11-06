@@ -1,0 +1,27 @@
+services:
+  multiagent-se:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: multiagent-software-engineering:latest
+    container_name: multiagent_se_system
+    user: "10001:10001"
+    ports:
+      - "8501:8501"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-}
+      - EXECUTION_MODE=${EXECUTION_MODE:-live}
+      - DEFAULT_MODEL=gemini-3.8-flash
+      - REQUIRE_HUMAN_APPROVAL=true
+      - ENABLE_PROMPT_INJECTION_CHECK=true
+      - ENABLE_AST_SECURITY_SCAN=true
+    volumes:
+      - ./sandbox_workspace:/app/sandbox_workspace
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8501/_stcore/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3

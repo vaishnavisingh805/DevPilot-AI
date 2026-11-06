@@ -1,0 +1,607 @@
+/* =============================================================================
+   DevPilot AI — Enterprise Autonomous Software Engineering Workspace Theme
+   Design System: Charcoal (#0B0E14), Electric Blue (#2F81F7), Subtle Border (#30363D)
+   Typography: Inter-style sans-serif, JetBrains Mono for code & diffs
+   ============================================================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+    --bg-main: #0B0E14;
+    --bg-surface: #161B22;
+    --bg-elevated: #21262D;
+    --bg-input: #0D1117;
+    --border-color: #30363D;
+    --border-light: #484F58;
+    --text-main: #F0F6FC;
+    --text-muted: #8B949E;
+    --text-secondary: #C9D1D9;
+    --accent-blue: #2F81F7;
+    --accent-blue-hover: #388BFD;
+    --accent-green: #238636;
+    --accent-green-text: #3FB950;
+    --accent-red: #DA3633;
+    --accent-red-text: #F85149;
+    --accent-amber: #D29922;
+    --accent-purple: #8957E5;
+    --accent-cyan: #39C5BB;
+    --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    --font-mono: 'JetBrains Mono', SFMono-Regular, Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+/* Global Application Container */
+html, body, [data-testid="stAppViewContainer"] {
+    background-color: var(--bg-main) !important;
+    color: var(--text-main) !important;
+    font-family: var(--font-sans) !important;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+[data-testid="stHeader"] {
+    background-color: var(--bg-main) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+[data-testid="stSidebar"] {
+    background-color: var(--bg-surface) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+[data-testid="stSidebar"] hr {
+    border-color: var(--border-color) !important;
+    margin: 1rem 0 !important;
+}
+
+/* Typography Overrides */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-sans) !important;
+    color: var(--text-main) !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.02em;
+}
+
+h1 { font-size: 1.85rem !important; }
+h2 { font-size: 1.45rem !important; margin-top: 0.5rem !important; margin-bottom: 0.25rem !important; }
+h3 { font-size: 1.15rem !important; margin-top: 1rem !important; }
+h4 { font-size: 1.02rem !important; }
+
+p, span, label, div {
+    font-family: var(--font-sans);
+}
+
+.stMarkdown p {
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+}
+
+.stCaption, [data-testid="stCaptionContainer"] {
+    font-size: 0.85rem !important;
+    color: var(--text-muted) !important;
+    margin-bottom: 0.75rem !important;
+}
+
+code, pre, .stCodeBlock {
+    font-family: var(--font-mono) !important;
+    font-size: 0.88rem !important;
+}
+
+/* App Header & Top Bar */
+.devpilot-navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 0.9rem 1.5rem;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    margin-bottom: 1.25rem;
+}
+
+.devpilot-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.devpilot-brand-icon {
+    width: 32px;
+    height: 32px;
+    background: var(--accent-blue);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+    font-weight: 800;
+    font-size: 16px;
+    box-shadow: 0 0 12px rgba(47, 129, 247, 0.35);
+}
+
+.devpilot-brand-title {
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+}
+
+.devpilot-tagline {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+.devpilot-nav-badges {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.devpilot-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 12px;
+    background: rgba(47, 129, 247, 0.12);
+    border: 1px solid rgba(47, 129, 247, 0.3);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #58A6FF;
+}
+
+.devpilot-status-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #3FB950;
+    box-shadow: 0 0 6px #3FB950;
+}
+
+/* Tab Navigation Styling */
+.stTabs [data-baseweb="tab-list"] {
+    gap: 6px;
+    background-color: var(--bg-surface) !important;
+    padding: 6px;
+    border-radius: 8px !important;
+    border: 1px solid var(--border-color) !important;
+    margin-bottom: 1.25rem !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    height: 44px !important;
+    padding: 0 22px !important;
+    border-radius: 6px !important;
+    color: var(--text-muted) !important;
+    font-weight: 500 !important;
+    font-size: 0.92rem !important;
+    border: none !important;
+    background-color: transparent !important;
+    transition: all 0.15s ease-in-out;
+}
+
+.stTabs [data-baseweb="tab"]:hover {
+    color: var(--text-main) !important;
+    background-color: var(--bg-elevated) !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background-color: var(--bg-elevated) !important;
+    color: var(--text-main) !important;
+    font-weight: 600 !important;
+    border: 1px solid var(--border-color) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.stTabs [data-baseweb="tab-highlight"] {
+    background-color: var(--accent-blue) !important;
+    height: 2px !important;
+}
+
+/* Surface & Card Containers */
+.saas-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 1.25rem;
+    transition: border-color 0.15s ease;
+    box-sizing: border-box;
+}
+
+.saas-card:hover {
+    border-color: var(--border-light);
+}
+
+.saas-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    gap: 10px;
+}
+
+.saas-card-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Metric Display Cards */
+.saas-metric-box {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.1rem;
+    text-align: left;
+    box-sizing: border-box;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.saas-metric-box:hover {
+    border-color: var(--border-light);
+}
+
+.saas-metric-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 6px;
+}
+
+.saas-metric-value {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+    line-height: 1.2;
+}
+
+.saas-metric-subtext {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: 6px;
+    line-height: 1.35;
+}
+
+/* Badges & Tags */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    line-height: 1.4;
+    white-space: nowrap;
+}
+
+.badge-blue {
+    background: rgba(47, 129, 247, 0.15);
+    color: #58A6FF;
+    border: 1px solid rgba(47, 129, 247, 0.4);
+}
+
+.badge-green {
+    background: rgba(35, 134, 54, 0.15);
+    color: #3FB950;
+    border: 1px solid rgba(35, 134, 54, 0.4);
+}
+
+.badge-amber {
+    background: rgba(210, 153, 34, 0.15);
+    color: #D29922;
+    border: 1px solid rgba(210, 153, 34, 0.4);
+}
+
+.badge-red {
+    background: rgba(218, 54, 51, 0.15);
+    color: #F85149;
+    border: 1px solid rgba(218, 54, 51, 0.4);
+}
+
+.badge-purple {
+    background: rgba(137, 87, 229, 0.15);
+    color: #BC8CFF;
+    border: 1px solid rgba(137, 87, 229, 0.4);
+}
+
+.badge-cyan {
+    background: rgba(57, 197, 187, 0.15);
+    color: #39C5BB;
+    border: 1px solid rgba(57, 197, 187, 0.4);
+}
+
+/* Custom Streamlit Buttons & Inputs */
+.stButton > button {
+    background-color: var(--accent-blue) !important;
+    color: #FFFFFF !important;
+    border: 1px solid var(--accent-blue) !important;
+    border-radius: 6px !important;
+    font-weight: 600 !important;
+    font-size: 0.9rem !important;
+    padding: 0.55rem 1.35rem !important;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+}
+
+.stButton > button:hover {
+    background-color: var(--accent-blue-hover) !important;
+    border-color: var(--accent-blue-hover) !important;
+    box-shadow: 0 0 12px rgba(47, 129, 247, 0.4) !important;
+    transform: translateY(-1px);
+}
+
+.stButton > button:active {
+    transform: translateY(0);
+}
+
+.stTextInput > div > div > input,
+.stTextArea > div > div > textarea,
+.stSelectbox > div > div {
+    background-color: var(--bg-input) !important;
+    color: var(--text-main) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 6px !important;
+    font-family: var(--font-sans) !important;
+    font-size: 0.92rem !important;
+}
+
+.stTextInput > div > div > input:focus,
+.stTextArea > div > div > textarea:focus {
+    border-color: var(--accent-blue) !important;
+    box-shadow: 0 0 0 2px rgba(47, 129, 247, 0.25) !important;
+}
+
+/* Tables & DataFrames */
+[data-testid="stDataFrame"] {
+    background-color: var(--bg-surface) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+}
+
+/* Code Diff Blocks */
+.diff-container {
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.1rem;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    overflow-x: auto;
+}
+
+.diff-added {
+    background-color: rgba(46, 160, 67, 0.18);
+    color: #3FB950;
+    font-family: var(--font-mono);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.diff-removed {
+    background-color: rgba(248, 81, 73, 0.18);
+    color: #F85149;
+    font-family: var(--font-mono);
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+/* Execution Timeline Step Visualizer */
+.timeline-track {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    padding: 1rem 0.5rem;
+    margin: 1rem 0;
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.timeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+    min-width: 90px;
+    padding: 0 4px;
+}
+
+.timeline-step-circle {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    background: var(--bg-surface);
+    border: 2px solid var(--border-color);
+    color: var(--text-muted);
+}
+
+.timeline-step-done .timeline-step-circle {
+    background: rgba(35, 134, 54, 0.25);
+    border-color: #3FB950;
+    color: #3FB950;
+}
+
+.timeline-step-active .timeline-step-circle {
+    background: rgba(47, 129, 247, 0.25);
+    border-color: #58A6FF;
+    color: #58A6FF;
+    box-shadow: 0 0 8px rgba(47, 129, 247, 0.5);
+}
+
+.timeline-step-label {
+    font-size: 0.74rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.timeline-step-done .timeline-step-label {
+    color: var(--text-secondary);
+}
+
+.timeline-step-active .timeline-step-label {
+    color: #58A6FF;
+}
+
+.timeline-step-agent {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+/* Context Banner */
+.context-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0.6rem 1rem;
+    background: rgba(22, 27, 34, 0.6);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-size: 0.85rem;
+}
+
+.context-banner-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Utility Dividers */
+hr {
+    border-color: var(--border-color) !important;
+    margin: 1.5rem 0 !important;
+}
+
+/* Hero Banner / SaaS Product Promise */
+.devpilot-hero-banner {
+    background: linear-gradient(135deg, rgba(22, 27, 34, 0.95) 0%, rgba(13, 17, 23, 0.95) 100%);
+    border: 1px solid var(--border-color);
+    border-left: 4px solid var(--accent-blue);
+    border-radius: 8px;
+    padding: 1.1rem 1.4rem;
+    margin-bottom: 1.25rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.devpilot-hero-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+}
+
+.devpilot-hero-desc {
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* File Extension Chips */
+.chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    font-weight: 500;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.chip-primary {
+    background: rgba(47, 129, 247, 0.15);
+    border-color: rgba(47, 129, 247, 0.4);
+    color: #58A6FF;
+}
+
+/* Sub Card / Nested Section */
+.saas-subcard {
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 0.9rem 1.1rem;
+    margin-bottom: 0.9rem;
+}
+
+.saas-subcard-title {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-main);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Side by Side Diff Styling */
+.diff-col-header {
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 6px 10px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+}
+.diff-col-header-orig {
+    background: rgba(248, 81, 73, 0.12);
+    color: #F85149;
+    border: 1px solid rgba(248, 81, 73, 0.3);
+}
+.diff-col-header-new {
+    background: rgba(46, 160, 67, 0.12);
+    color: #3FB950;
+    border: 1px solid rgba(46, 160, 67, 0.3);
+}
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+    .devpilot-navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .timeline-track {
+        justify-content: flex-start;
+        gap: 12px;
+    }
+}
